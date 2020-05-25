@@ -80,17 +80,11 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    @foreach ($links as $link)
-                        <a href="{{ $link->url }}">{{ $link->title }}</a>
-                    @endforeach
+                <div id="index-react" class="title m-b-md">
                 </div>
             </div>
             
         </div>
     </body>
+    <script type="text/javascript" src="js/app.js"></script>
 </html>
