@@ -17,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/todos', 'TodoController@index');
+Route::get('/todos/{id}', 'TodoController@show');
+Route::post('/todos', 'TodoController@store');
+Route::post('/todos/{id}/answers', 'TodoController@answer');
+Route::delete('/todos/{id}', 'TodoController@delete');
+Route::delete('/todos/{id}/answers', 'TodoController@resetAnswers');
