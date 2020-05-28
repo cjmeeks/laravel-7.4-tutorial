@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Header, Message, Table } from "semantic-ui-react";
+import { Header, Message, Table, Button } from "semantic-ui-react";
 import TodoForm from "./TodoForm";
+import DeleteTodoButton from "./DeleteTodoButton";
 
 import { API_BASE_URL } from "./config";
 
@@ -12,6 +13,7 @@ export default class TodoPage extends Component {
             isLoading: null,
         };
         this.onAddition = this.onAddition.bind(this);
+        this.onDelete = this.onDelete.bind(this);
     }
 
     componentDidMount() {
@@ -38,12 +40,20 @@ export default class TodoPage extends Component {
         }
     }
     onAddition(todo) {
-        console.log(this.state.todos);
-
         this.setState({
             todos: [...this.state.todos, todo],
         });
     }
+
+    onDelete(id) {
+        let todos = this.state.todos;
+        let index = todos.findIndex((todo) => todo.id === id);
+        todos.splice(index, 1);
+        this.setState({
+            todos: todos,
+        });
+    }
+
     render() {
         return (
             <div>
@@ -66,7 +76,12 @@ export default class TodoPage extends Component {
                                     <tr id={todo.id} key={todo.id}>
                                         <td>{todo.id}</td>
                                         <td>{todo.name}</td>
-                                        <td>Action buttons placeholder</td>
+                                        <td>
+                                            <DeleteTodoButton
+                                                onDelete={this.onDelete}
+                                                todo_id={todo.id}
+                                            />
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>

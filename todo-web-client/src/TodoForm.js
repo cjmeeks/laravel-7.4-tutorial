@@ -41,7 +41,6 @@ export default class TodoForm extends Component {
             }),
         });
         const todo = await response.json();
-        console.log(todo);
 
         if (todo.errors) {
             this.setState({
